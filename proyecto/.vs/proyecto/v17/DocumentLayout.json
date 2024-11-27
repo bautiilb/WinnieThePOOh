@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|c:\\users\\bauti\\documents\\github\\winniethepooh\\proyecto\\segundointentosnake\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|solutionrelative:segundointentosnake\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|c:\\users\\bauti\\documents\\github\\winniethepooh\\proyecto\\segundointentosnake\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|solutionrelative:segundointentosnake\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|c:\\users\\bauti\\documents\\github\\winniethepooh\\proyecto\\segundointentosnake\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|solutionrelative:segundointentosnake\\snake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B87127C-2197-4C10-8152-C36DD95D67F3}|segundoIntentoSnake\\segundoIntentoSnake.csproj|c:\\users\\bauti\\documents\\github\\winniethepooh\\proyecto\\segundointentosnake\\part.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,8 +22,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 216,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Game1.cs",
+              "RelativeDocumentMoniker": "segundoIntentoSnake\\Game1.cs",
+              "ToolTip": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Game1.cs*",
+              "RelativeToolTip": "segundoIntentoSnake\\Game1.cs*",
+              "ViewState": "AQIAABwAAAAAAAAAAADwvy8AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenGroupName": "segundoIntentoSnake",
+              "WhenOpened": "2024-11-23T23:52:24.635Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -55,27 +70,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Game1.cs",
-              "RelativeDocumentMoniker": "segundoIntentoSnake\\Game1.cs",
-              "ToolTip": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Game1.cs",
-              "RelativeToolTip": "segundoIntentoSnake\\Game1.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAAAFAAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "segundoIntentoSnake",
-              "WhenOpened": "2024-11-23T23:52:24.635Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Snake.cs",
               "DocumentMoniker": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Snake.cs",
               "RelativeDocumentMoniker": "segundoIntentoSnake\\Snake.cs",
               "ToolTip": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Snake.cs",
               "RelativeToolTip": "segundoIntentoSnake\\Snake.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAFgAAABFAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAkwDIAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T23:34:34.004Z",
               "EditorCaption": ""
@@ -88,7 +88,7 @@
               "RelativeDocumentMoniker": "segundoIntentoSnake\\Part.cs",
               "ToolTip": "C:\\Users\\BAUTI\\Documents\\GitHub\\WinnieThePOOh\\proyecto\\segundoIntentoSnake\\Part.cs",
               "RelativeToolTip": "segundoIntentoSnake\\Part.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAIwC4AAABJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T23:52:23.047Z",
               "EditorCaption": ""

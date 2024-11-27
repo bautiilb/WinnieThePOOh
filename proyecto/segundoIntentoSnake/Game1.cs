@@ -16,13 +16,16 @@ namespace segundoIntentoSnake
         Snake snake;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        char direction = ' ';
+        bool GameOver = false;
         float delay = 0.3f;
         float lastDelay = 0f;
-        Point position = new Point(10, 10);
+        Vector2 position = new Vector2(10, 10);
         const int cellSize = 32;
         int points = 0;
         SpriteFont spriteFont;
+        int startX = 10;
+        int startY = 10;
+
 
 
         public Game1()
@@ -40,11 +43,14 @@ namespace segundoIntentoSnake
             bodyParts = new List<Part>();
             for (int i = 0; i < 4; i++)
             {
-                bodyParts.Add(new Part()); 
+                bodyParts.Add(new Part()
+                {
+                    Position = position,
+                    Direction = 'T'
+                });
             }
             snake = new Snake(bodyParts);
-            snake.SnakePosition = new Vector2(_graphics.PreferredBackBufferWidth / 2,
-                                   _graphics.PreferredBackBufferHeight / 2);
+
 
             if (gameAux == 0)
             {
@@ -66,78 +72,79 @@ namespace segundoIntentoSnake
 
         protected override void Update(GameTime gameTime)
         {
-            lastDelay += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            snake.PartDefinition();
-
-
-            if (snake.SnakePosition == snake.ApplePosition)
+            //if (GameOver != true && bodyParts.Count >= 4)
             {
-                snake.GenerateApplePosition(random, _graphics);
-                var lastPart = bodyParts[^1];
-                var newPart = new Part
+                lastDelay += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                snake.PartDefinition();
+
+
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                                 Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
+
+
+                var kstate = Keyboard.GetState();
+
+                if (kstate.IsKeyDown(Keys.Up) || kstate.IsKeyDown(Keys.W) && snake.SnakeDirection != 'D')
                 {
-                    Position = lastPart.Position,
-                    Direction = lastPart.Direction
-                };
-                bodyParts.Add(newPart);
-                delay -= 0.01f;
-                points++;
+                    snake.SnakeDirection = 'U';
+                }
+
+                if (kstate.IsKeyDown(Keys.Down) || kstate.IsKeyDown(Keys.S) && snake.SnakeDirection != 'U')
+                {
+                    snake.SnakeDirection = 'D';
+                }
+
+                if (kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.A) && snake.SnakeDirection != 'R')
+                {
+                    snake.SnakeDirection = 'L';
+                }
+
+                if (kstate.IsKeyDown(Keys.Right) || kstate.IsKeyDown(Keys.D) && snake.SnakeDirection != 'L')
+                {
+                    snake.SnakeDirection = 'R';
+                }
+
+                if (lastDelay >= delay)
+                {
+
+                    if (snake.SnakeDirection == 'U')
+                        position.Y--;
+                    else if (snake.SnakeDirection == 'D')
+                        position.Y++;
+                    else if (snake.SnakeDirection == 'L')
+                        position.X--;
+                    else if (snake.SnakeDirection == 'R')
+                        position.X++;
+
+                    snake.SnakePosition = new Vector2(
+                        position.X * cellSize,
+                        position.Y * cellSize
+                    );
+
+                    if (snake.SnakePosition == snake.ApplePosition)
+                    {
+                        snake.GenerateApplePosition(random, _graphics);
+                        var lastPart = bodyParts[^1];
+                        var newPart = new Part
+                        {
+                            Position = lastPart.Position + snake.SnakePosition,
+                            Direction = lastPart.Direction
+                        };
+                        bodyParts.Add(newPart);
+                        delay -= 0.008f;
+                        points++;
+                    }
+
+                    snake.UpdateBody();
+
+                    lastDelay = 0f;
+                }
+
+                GameOver = snake.GameOver();
             }
-
-
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                             Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic 
-
-
-            var kstate = Keyboard.GetState();
-
-            if (kstate.IsKeyDown(Keys.Up) || kstate.IsKeyDown(Keys.W) && direction != 'D')
-            {
-                direction = 'U';
-            }
-
-            if (kstate.IsKeyDown(Keys.Down) || kstate.IsKeyDown(Keys.S) && direction != 'U')
-            {
-                direction = 'D';
-            }
-
-            if (kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.A) && direction != 'R')
-            {
-                direction = 'L';
-            }
-
-            if (kstate.IsKeyDown(Keys.Right) || kstate.IsKeyDown(Keys.D) && direction != 'L')
-            {
-                direction = 'R';
-            }
-                
-
-            if (lastDelay >= delay)
-            {
-                snake.SnakeDirection = direction;
-
-                if (direction == 'U')
-                    position.Y--;
-                else if (direction == 'D')
-                    position.Y++;
-                else if (direction == 'L')
-                    position.X--;
-                else if (direction == 'R')
-                    position.X ++;
-
-
-                snake.SnakePosition = new Vector2(
-                    position.X * cellSize,
-                    position.Y * cellSize
-                );
-
-                snake.UpdateBody();
-                lastDelay = 0f;
-            }
+            
 
             base.Update(gameTime);
 

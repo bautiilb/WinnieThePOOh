@@ -40,9 +40,16 @@ namespace segundoIntentoSnake
 
             bodyParts[0].Position = snakePosition;
             bodyParts[0].Direction = snakeDirection;
+
+            PartDefinition();
         }
         public void PartDefinition()
         {
+            Part lastPart = bodyParts[bodyParts.Count - 1];
+            Part almostLastPart = bodyParts[bodyParts.Count - 2];
+
+            lastPart.Direction = almostLastPart.Direction;
+
             for (int i = 0; i < bodyParts.Count; i++)
             {
                 if (i == 0)
@@ -94,6 +101,18 @@ namespace segundoIntentoSnake
                     }
                 }
             }
+        }
+        public bool GameOver()
+        {
+            for (int i = 1; i < bodyParts.Count; i++)
+            {
+                if (bodyParts[i].Position == bodyParts[0].Position)
+                {
+                    snakeDirection = 'T';
+                    return true;
+                }
+            }
+            return false;
         }
         public void GenerateApplePosition(Random random, GraphicsDeviceManager graphics)
         {

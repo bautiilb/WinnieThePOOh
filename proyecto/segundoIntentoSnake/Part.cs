@@ -12,7 +12,7 @@ namespace segundoIntentoSnake
     {
         SnakePartType type;
         Vector2 position;
-        char direction;
+        char direction = 'T';
 
         public SnakePartType Type { get { return type; } set { type = value; } }
         public Vector2 Position { get { return position; } set { position = value; } }
