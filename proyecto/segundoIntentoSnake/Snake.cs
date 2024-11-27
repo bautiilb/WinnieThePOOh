@@ -12,7 +12,7 @@ namespace segundoIntentoSnake
     {
         Texture2D snakeSheet;
         Vector2 snakePosition;
-        char snakeDirection;
+        char snakeDirection = 'R';
         float snakeSpeed;
         List<Part> bodyParts;
         Vector2 applePosition;
@@ -121,10 +121,7 @@ namespace segundoIntentoSnake
             int gridWidth = graphics.PreferredBackBufferWidth / cellSize;
             int gridHeight = graphics.PreferredBackBufferHeight / cellSize;
 
-            int xCell = random.Next(0, gridWidth);
-            int yCell = random.Next(0, gridHeight);
-
-            applePosition = new Vector2(xCell * cellSize, yCell * cellSize);
+            applePosition = new Vector2(random.Next(0, gridWidth) * cellSize, random.Next(0, gridHeight) * cellSize);
 
             foreach(Part i in bodyParts)
             {
