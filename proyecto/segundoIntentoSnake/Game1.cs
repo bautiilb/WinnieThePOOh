@@ -153,8 +153,24 @@ namespace segundoIntentoSnake
                     if (bodyParts[0].Position.X >= width * cellSize || bodyParts[0].Position.X < 0 * cellSize || bodyParts[0].Position.Y >= high * cellSize || bodyParts[0].Position.Y < 0 * cellSize)
                     {
                         GameOver = true;
+                        if (kstate.IsKeyDown(Keys.R) && (GameOver == true || GameOver2 == true))
+                        {
+                            //bodyParts.Clear();
+                            RestartGame();
+                        }
                         return;
                     }
+                    if (bodyParts2[0].Position.X >= width * cellSize || bodyParts2[0].Position.X < 0 * cellSize || bodyParts2[0].Position.Y >= high * cellSize || bodyParts2[0].Position.Y < 0 * cellSize)
+                    {
+                        GameOver2 = true;
+                        if (kstate.IsKeyDown(Keys.R) && (GameOver == true || GameOver2 == true))
+                        {
+                            //bodyParts.Clear();
+                            RestartGame();
+                        }
+                        return;
+                    }
+
 
                     if (snake.SnakeDirection == 'U') position.Y--;
                     else if (snake.SnakeDirection == 'D') position.Y++;
@@ -163,9 +179,18 @@ namespace segundoIntentoSnake
 
                     snake.SnakePosition = new Vector2(position.X * cellSize, position.Y * cellSize);
 
-                    if (snake.SnakePosition == snake.ApplePosition)
+                    if (snake.SnakePosition == snake.ApplePosition || snake.SnakePosition == snake2.ApplePosition)
                     {
-                        snake.GenerateApplePosition(random, _graphics);
+                        
+                        if (snake.SnakePosition == snake.ApplePosition)
+                        {
+                            snake.GenerateApplePosition(random, _graphics);
+                        }
+                        else
+                        {
+                            snake2.GenerateApplePosition(random, _graphics);
+                        }
+
                         var lastPart = bodyParts[^1];
                         var newPart = new Part
                         {
@@ -173,22 +198,9 @@ namespace segundoIntentoSnake
                             Direction = lastPart.Direction
                         };
                         bodyParts.Add(newPart);
-                        delay = Math.Max(0.1f, delay - 0.008f);
                         points++;
                     }
-                    else if (snake.SnakePosition == snake2.ApplePosition)
-                    {
-                        snake.GenerateApplePosition(random, _graphics);
-                        var lastPart = bodyParts[^1];
-                        var newPart = new Part
-                        {
-                            Position = lastPart.Position + snake.SnakePosition,
-                            Direction = lastPart.Direction
-                        };
-                        bodyParts.Add(newPart);
-                        delay = Math.Max(0.1f, delay - 0.008f);
-                        points++;
-                    }
+
 
                     snake.UpdateBody();
 
@@ -199,21 +211,18 @@ namespace segundoIntentoSnake
 
                     snake2.SnakePosition = new Vector2(position2.X * cellSize, position2.Y * cellSize);
 
-                    if (snake2.SnakePosition == snake2.ApplePosition)
+                    if (snake2.SnakePosition == snake2.ApplePosition || snake2.SnakePosition == snake.ApplePosition)
                     {
-                        snake2.GenerateApplePosition(random, _graphics);
-                        var lastPart = bodyParts2[^1];
-                        var newPart = new Part
+                      
+                        if (snake2.SnakePosition == snake2.ApplePosition)
                         {
-                            Position = lastPart.Position + snake2.SnakePosition,
-                            Direction = lastPart.Direction
-                        };
-                        bodyParts2.Add(newPart);
-                        points2++;
-                    }
-                    else if(snake2.SnakePosition == snake.ApplePosition)
-                    {
-                        snake2.GenerateApplePosition(random, _graphics);
+                            snake2.GenerateApplePosition(random, _graphics);
+                        }
+                        else
+                        {
+                            snake.GenerateApplePosition(random, _graphics);
+                        }
+
                         var lastPart = bodyParts2[^1];
                         var newPart = new Part
                         {
@@ -232,14 +241,14 @@ namespace segundoIntentoSnake
                 }
                 if (auxSad > 3)
                 {
-                    GameOver = snake.GameOver();
-                    GameOver2 = snake2.GameOver();
+                    GameOver = snake.GameOver(bodyParts2);
+                    GameOver2 = snake2.GameOver(bodyParts);
                 }
             }
             else if (GameOver == true || GameOver2 == true)
             {
                 var kstate = Keyboard.GetState();
-                if (kstate.IsKeyDown(Keys.R))
+                if (kstate.IsKeyDown(Keys.R) && (GameOver == true || GameOver2 == true))
                 {
                     //bodyParts.Clear();
                     RestartGame();
@@ -278,7 +287,7 @@ namespace segundoIntentoSnake
                 bodyParts.Add(new Part()
                 {
                     Position = position + lastPosition,
-                    Direction = 'T',
+                    Direction = 'R',
                 });
                 lastPosition = bodyParts[i].Position;
             }
@@ -292,15 +301,15 @@ namespace segundoIntentoSnake
 
             bodyParts2.Clear();
             position2 = new Vector2(5, 5); //--?
-            Vector2 lastPosition2 = new Vector2(5, 5);
+            Vector2 lastPosition2 = new Vector2(15, 10);
             for (int i = 0; i < 4; i++)
             {
                 bodyParts2.Add(new Part()
                 {
-                    Position = position + lastPosition2,
-                    Direction = 'T',
+                    Position = position2 + lastPosition2,
+                    Direction = 'R',
                 });
-                lastPosition = bodyParts[i].Position;
+                lastPosition2 = bodyParts2[i].Position;
             }
             snake = new Snake(bodyParts);
 

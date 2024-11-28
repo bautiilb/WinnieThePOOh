@@ -102,7 +102,7 @@ namespace segundoIntentoSnake
                 }
             }
         }
-        public bool GameOver()
+        public bool GameOver(List<Part> bodyParts2)
         {
             for (int i = 1; i < bodyParts.Count; i++)
             {
@@ -112,6 +112,34 @@ namespace segundoIntentoSnake
                     return true;
                 }
             }
+
+            for (int i = 0; i < bodyParts2.Count; i++)
+            {
+                if (bodyParts[0].Position == bodyParts2[i].Position)
+                {
+                    snakeDirection = 'T';
+                    return true;
+                }
+            }
+
+            for (int i = 1; i < bodyParts2.Count; i++)
+            {
+                if (bodyParts2[i].Position == bodyParts2[0].Position)
+                {
+                    snakeDirection = 'T';
+                    return true;
+                }
+            }
+
+            for (int i = 0; i < bodyParts.Count; i++)
+            {
+                if (bodyParts2[0].Position == bodyParts[i].Position)
+                {
+                    snakeDirection = 'T';
+                    return true;
+                }
+            }
+
             return false;
         }
         public void GenerateApplePosition(Random random, GraphicsDeviceManager graphics)
