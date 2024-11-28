@@ -142,7 +142,7 @@ namespace segundoIntentoSnake
 
             return false;
         }
-        public void GenerateApplePosition(Random random, GraphicsDeviceManager graphics)
+        public void GenerateApplePosition(Random random, GraphicsDeviceManager graphics, List<Part> bodyParts2, Vector2 applePosition2)
         {
             int cellSize = 32;
 
@@ -154,8 +154,15 @@ namespace segundoIntentoSnake
             foreach(Part i in bodyParts)
             {
                 if (applePosition == i.Position)
-                    GenerateApplePosition(random, graphics);
+                    GenerateApplePosition(random, graphics, bodyParts2, applePosition2);
             }
+            foreach(Part i in bodyParts2)
+            {
+                if (applePosition == i.Position)
+                    GenerateApplePosition(random, graphics, bodyParts2, applePosition2);
+            }
+            if(applePosition == applePosition2)
+                GenerateApplePosition(random, graphics, bodyParts2, applePosition2);
         }
         public void DrawApple(SpriteBatch spriteBatch)
         {

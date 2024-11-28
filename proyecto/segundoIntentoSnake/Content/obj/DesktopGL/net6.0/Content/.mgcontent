@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/BAUTI/Documents/GitHub/WinnieThePOOh/proyecto/segundoIntentoSnake/Content/Fonts/ArcadeFont.spritefont</File>
-    <File>C:/Users/BAUTI/Documents/GitHub/WinnieThePOOh/proyecto/segundoIntentoSnake/Content/snake_assets.png</File>
+    <File>C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/segundoIntentoSnake/Content/Fonts/ArcadeFont.spritefont</File>
+    <File>C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/segundoIntentoSnake/Content/snake_assets.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/snake_assets.png","C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/bin/DesktopGL/Content/snake_assets.xnb","TextureProcessor","Texture2DContent",31311,327765,0,423925
+"C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/snake_background.png","C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/bin/DesktopGL/Content/snake_background.xnb","TextureProcessor","Texture2DContent",461252,1567589,0,0555522

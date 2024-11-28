@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/BAUTI/Documents/GitHub/WinnieThePOOh/proyecto/snake/Content/snake_assets.png</File>
-    <File>C:/Users/BAUTI/Documents/GitHub/WinnieThePOOh/proyecto/snake/Content/snake_background.png</File>
+    <File>C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/snake_assets.png</File>
+    <File>C:/Users/A-17/Desktop/WinnieThePOOh/proyecto/snake/Content/snake_background.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
