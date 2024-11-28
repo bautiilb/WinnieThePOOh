@@ -280,44 +280,50 @@ namespace segundoIntentoSnake
         public void RestartGame()
         {
             bodyParts.Clear();
-            position = new Vector2(10, 10); //--?
-            Vector2 lastPosition = new Vector2(5, 5);
+            position = new Vector2(10, 10);
+            Vector2 lastPosition = position;
+
             for (int i = 0; i < 4; i++)
             {
                 bodyParts.Add(new Part()
                 {
-                    Position = position + lastPosition,
+                    Position = lastPosition,
                     Direction = 'R',
                 });
                 lastPosition = bodyParts[i].Position;
             }
-            snake = new Snake(bodyParts);
 
+            snake = new Snake(bodyParts);
             snake.SnakeSheet = Content.Load<Texture2D>("snake_assets");
 
             snake.GenerateApplePosition(random, _graphics);
+
             GameOver = false;
             points = 0;
 
             bodyParts2.Clear();
-            position2 = new Vector2(5, 5); //--?
-            Vector2 lastPosition2 = new Vector2(15, 10);
+            position2 = new Vector2(5, 5);
+            Vector2 lastPosition2 = position2;
+
             for (int i = 0; i < 4; i++)
             {
                 bodyParts2.Add(new Part()
                 {
-                    Position = position2 + lastPosition2,
+                    Position = lastPosition2,
                     Direction = 'R',
                 });
                 lastPosition2 = bodyParts2[i].Position;
             }
-            snake = new Snake(bodyParts);
 
-            snake.SnakeSheet = Content.Load<Texture2D>("snake_assets");
+            snake2 = new Snake(bodyParts2);
+            snake2.SnakeSheet = Content.Load<Texture2D>("snake_assets");
 
             snake2.GenerateApplePosition(random, _graphics);
+
             GameOver = false;
+
             points2 = 0;
+
             delay = 0.3f;
         }
 
