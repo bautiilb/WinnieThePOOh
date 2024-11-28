@@ -143,7 +143,7 @@ namespace segundoIntentoSnake
             0f);
         }
 
-        public void DrawSnake(SpriteBatch spriteBatch)
+        public void DrawSnake(SpriteBatch spriteBatch, Color snakeColor)
         {
             for (int i = 0; i < bodyParts.Count; i++)
             {
@@ -151,7 +151,7 @@ namespace segundoIntentoSnake
                 snakeSheet,
                 bodyParts[i].Position,
                 bodyParts[i].RectanglePart(),
-                Color.White,
+                snakeColor,
                 0f,
                 Vector2.Zero,
                 new Vector2(0.5f, 0.5f),
