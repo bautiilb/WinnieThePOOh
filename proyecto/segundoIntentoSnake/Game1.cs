@@ -23,7 +23,10 @@ namespace segundoIntentoSnake
         const int cellSize = 32;
         int points = 0;
         SpriteFont spriteFont;
+        bool canMove = true;
         int auxSad = 0;
+        int width;
+        int high;
 
 
 
@@ -34,6 +37,8 @@ namespace segundoIntentoSnake
             _graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
+            width = _graphics.PreferredBackBufferWidth / cellSize;
+            high = _graphics.PreferredBackBufferHeight / cellSize;
         }
 
         protected override void Initialize()
@@ -84,26 +89,35 @@ namespace segundoIntentoSnake
 
                 if ((kstate.IsKeyDown(Keys.Up) || kstate.IsKeyDown(Keys.W)) && snake.SnakeDirection != 'D')
                 {
-                        snake.SnakeDirection = 'U';
+                    snake.SnakeDirection = 'U';
+                    canMove = false;
                 }
 
-                if ((kstate.IsKeyDown(Keys.Down) || kstate.IsKeyDown(Keys.S)) && snake.SnakeDirection != 'U')
+                else if ((kstate.IsKeyDown(Keys.Down) || kstate.IsKeyDown(Keys.S)) && snake.SnakeDirection != 'U')
                 {
-                        snake.SnakeDirection = 'D';
+                    snake.SnakeDirection = 'D';
+                    canMove = false;
                 }
 
-                if ((kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.A)) && snake.SnakeDirection != 'R')
+                else if ((kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.A)) && snake.SnakeDirection != 'R')
                 {
-                        snake.SnakeDirection = 'L';
+                    snake.SnakeDirection = 'L';
+                    canMove = false;
                 }
 
-                if ((kstate.IsKeyDown(Keys.Right) || kstate.IsKeyDown(Keys.D)) && snake.SnakeDirection != 'L')
+                else if ((kstate.IsKeyDown(Keys.Right) || kstate.IsKeyDown(Keys.D)) && snake.SnakeDirection != 'L')
                 {
-                        snake.SnakeDirection = 'R';
+                    snake.SnakeDirection = 'R';
+                    canMove = false;
                 }
 
                 if (lastDelay >= delay)
                 {
+                    if (bodyParts[0].Position.X >= width * cellSize || bodyParts[0].Position.X < 0 * cellSize || bodyParts[0].Position.Y >= high * cellSize || bodyParts[0].Position.Y < 0 * cellSize)
+                    {
+                        GameOver = true;  
+                        return;
+                    }
 
                     if (snake.SnakeDirection == 'U')
                         position.Y--;
@@ -129,7 +143,7 @@ namespace segundoIntentoSnake
                             Direction = lastPart.Direction
                         };
                         bodyParts.Add(newPart);
-                        delay -= 0.008f;
+                        delay = Math.Max(0.1f, delay - 0.008f);
                         points++;
                     }
 
@@ -137,12 +151,23 @@ namespace segundoIntentoSnake
 
                     lastDelay = 0f;
 
+                    canMove = true;
+
                     auxSad++;
                 }
                 if(auxSad > 4)
                     GameOver = snake.GameOver();
             }
-            
+            else if (GameOver == true)
+            {
+                var kstate = Keyboard.GetState();
+                if (kstate.IsKeyDown(Keys.R))
+                {
+                    //bodyParts.Clear();
+                    RestartGame();
+                }
+                return;
+            }
 
             base.Update(gameTime);
 
@@ -162,26 +187,30 @@ namespace segundoIntentoSnake
             base.Draw(gameTime);
         }
 
-
         public void RestartGame()
         {
             bodyParts.Clear();
-            position = new Vector2(5, 5);
-            Vector2 lastPosition = new Vector2(10, 10);
+            position = new Vector2(10, 10); //--?
+            Vector2 lastPosition = new Vector2(-10, -10);
             for (int i = 0; i < 4; i++)
             {
                 bodyParts.Add(new Part()
                 {
                     Position = position + lastPosition,
-                    Direction = 'T'
+                    Direction = 'T',
+                    Type = Part.SnakePartType.BodyHorizontal
                 });
                 lastPosition = bodyParts[i].Position;
             }
             snake = new Snake(bodyParts);
+
+            snake.SnakeSheet = Content.Load<Texture2D>("snake_assets");
+
             snake.GenerateApplePosition(random, _graphics);
             GameOver = false;
             points = 0;
             delay = 0.3f;
         }
+
     }
 }
